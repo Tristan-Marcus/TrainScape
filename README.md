@@ -1,7 +1,8 @@
 # TrainScape - Fitiness Tracker
 
-### An open source web application currently in development
-### This is a fitness tracking solution designed for myself during the covid-19 pandemic
+An open source web application currently in development.
+
+This is a fitness tracking solution designed for myself during the covid-19 pandemic.
 
 
 <br />
@@ -48,9 +49,9 @@
 
 # My github/other stuff
 
-## If you're interested in other things i've worked on check out my [github]
+If you're interested in other things i've worked on check out my [github]
 
-## If you want to contact me use the form on my [website]
+If you want to contact me use the form on my [website]
 
 
 <br />
@@ -78,7 +79,7 @@
 
 # Contact Me
 
-## Use the contact form on my website here ---> [website]
+Use the contact form on my website here ---> [website]
 
 
 [website]: https://tristan-marcus.github.io/portfolio/
