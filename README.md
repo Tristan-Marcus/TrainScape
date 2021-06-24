@@ -72,11 +72,6 @@ If you want to contact me use the form on my [website]
 ➡️ [more videos...](https://www.youtube.com/channel/UCzmnYFdFDFCwFJsf6_tmYUQ)
 
 
-<br />
-<br />
-<br />
-
-
 [website]: https://tristan-marcus.github.io/portfolio/
 [linkedin]: https://www.linkedin.com/in/tristan-marcus
 [github]: https://github.com/Tristan-Marcus
