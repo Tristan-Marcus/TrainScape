@@ -77,11 +77,6 @@ If you want to contact me use the form on my [website]
 <br />
 
 
-# Contact Me
-
-Use the contact form on my website here ---> [website]
-
-
 [website]: https://tristan-marcus.github.io/portfolio/
 [linkedin]: https://www.linkedin.com/in/tristan-marcus
 [github]: https://github.com/Tristan-Marcus
