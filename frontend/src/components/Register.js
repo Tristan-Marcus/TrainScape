@@ -2,7 +2,6 @@ import React from 'react'
 
 export function Register() {
 
-
     return (
         <div className="mt-5 d-flex align-items-center justify-content-center">
             <div className="m-5">

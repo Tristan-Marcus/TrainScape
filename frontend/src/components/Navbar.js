@@ -1,6 +1,7 @@
 import React from 'react'
 
 export function Navbar() {
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -16,7 +17,7 @@ export function Navbar() {
                             <a className="nav-link active" aria-current="page" href="#">Diary</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Routines</a>
+                            <a className="nav-link" href="#">Workouts</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" aria-current="page" href="#">Library</a>
@@ -31,6 +32,7 @@ export function Navbar() {
                     </ul>
                     
                 </div>
+                
             </div>
         </nav>
     )

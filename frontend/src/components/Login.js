@@ -1,13 +1,13 @@
 import React from 'react'
 
 export function Login() {
-
-
+    
     return (
         <div className="mt-5 d-flex align-items-center justify-content-center">
             <div className="m-5">
                 <h1>TrainScape</h1>
             </div>
+
             <div className="d-flex flex-column align-items-center justify-content-center mt-5">
                 <form className="mt-5">
                     <div class="mb-3">
