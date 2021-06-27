@@ -1,8 +1,10 @@
 import './App.css';
 import { Login } from './components/Login';
 import { Register } from './components/Register'
-import { Home } from './components/Home'
+import { Diary } from './components/Diary/Diary'
 import { Workouts } from './components/Workouts/Workouts'
+import { Profile } from './components/Profile/Profile';
+import { Library } from './components/ExerciseLibrary/Library';
 
 function App() {
 
@@ -10,8 +12,10 @@ function App() {
     <div className="App">
       {/*<Login />*/}
       {/*<Register />*/}
-      {/*<Home />*/}
-      {<Workouts/>}
+      {/*<Diary />*/}
+      {/*<Workouts/>*/}
+      {<Library/>}
+      {/*<Profile />*/}
       
     </div>
   );
