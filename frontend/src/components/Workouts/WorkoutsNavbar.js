@@ -15,7 +15,7 @@ export function WorkoutsNavbar() {
                     </form>                        
                 </nav>
                 
-                <button className="btn btn-primary">
+                <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testModal" aria-current="true">
                     New Workout
                 </button>
                 

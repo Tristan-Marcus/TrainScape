@@ -14,8 +14,8 @@ function App() {
       {/*<Register />*/}
       {/*<Diary />*/}
       {/*<Workouts/>*/}
-      {<Library/>}
-      {/*<Profile />*/}
+      {/*<Library/>*/}
+      {<Profile />}
       
     </div>
   );

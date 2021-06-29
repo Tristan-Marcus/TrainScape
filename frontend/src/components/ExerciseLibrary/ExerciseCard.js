@@ -1,7 +1,6 @@
 import React from 'react'
 
 
-
 export function ExerciseCard() {
 
     return (
