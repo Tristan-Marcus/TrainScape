@@ -1,7 +1,4 @@
 from django.conf import settings
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.http.response import JsonResponse
 from django.utils.http import is_safe_url
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -34,6 +31,7 @@ def home_view(request, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def workout_list_view(request, *args, **kwargs):
     try:
         workouts = Workout.objects.all()
@@ -47,6 +45,7 @@ def workout_list_view(request, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def workout_view(request, workout_id, *args, **kwargs):
     try:
         workout = Workout.objects.get(workout_id=workout_id)
@@ -60,6 +59,7 @@ def workout_view(request, workout_id, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def workout_create_view(request, *args, **kwargs):
     serializer = WorkoutSerializer(data = request.data)
 
@@ -71,6 +71,7 @@ def workout_create_view(request, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def workout_delete_view(request, workout_id, *args, **kwargs):
     try:
         workout = Workout.objects.get(workout_id=workout_id)
@@ -84,6 +85,7 @@ def workout_delete_view(request, workout_id, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def workout_update_view(request, workout_id, *args, **kwargs):
     try:
         workout = Workout.objects.get(workout_id=workout_id)
@@ -100,6 +102,7 @@ def workout_update_view(request, workout_id, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def exercise_list_view(request, *args, **kwargs):
     try:
         exercises = Exercise.objects.all()
@@ -113,6 +116,7 @@ def exercise_list_view(request, *args, **kwargs):
 
 # TODO: Add user auth / permissions
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwargs):
     try:
         exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
@@ -126,6 +130,7 @@ def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwar
 
 # TODO: Add user auth / permissions
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def workout_exercise_update_view(request, workout_id, exercise_id, *args, **kwargs):
     try:
         exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
