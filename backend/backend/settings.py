@@ -126,8 +126,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'/diary/.*$'
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
