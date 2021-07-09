@@ -3,101 +3,138 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.utils.http import is_safe_url
+from django.core.exceptions import ObjectDoesNotExist
 
-from rest_framework import serializers
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 
-from .models import Workout, Exercise, WorkoutExerciseDetail
-from .serializers import WorkoutCreateSerializer, WorkoutSerializer, ExerciseSerializer, WorkoutExerciseDetailSerializer
 
+from .models import (
+    Workout, 
+    Exercise, 
+    WorkoutExerciseDetail
+)
+
+from .serializers import (
+    WorkoutSerializer,
+    ExerciseSerializer,
+    WorkoutExerciseDetailSerializer
+)
+
+ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
 # TODO: Home view
-def home_view(request, *args, **kwargs):
-    pass
-
-
-# TODO: Validate the creation
 # TODO: Add user auth / permissions
-@api_view(['POST'])
-def workout_create_view(request, *args, **kwargs):
-    workout_data = request.POST
-    serializer = WorkoutCreateSerializer(workout_data)
-    
-    serializer.save()
-    
-    return Response(serializer.data, status=201)
-    
-    #return Response({}, status=400)
+@api_view(['GET'])
+def home_view(request, *args, **kwargs):
+    return Response("There is currently no Home page", status=200)
 
 
+# TODO: Add user auth / permissions
 @api_view(['GET'])
 def workout_list_view(request, *args, **kwargs):
-    querySet = Workout.objects.all()
-
-    serializer = WorkoutSerializer(querySet, many = True)
+    try:
+        workouts = Workout.objects.all()
+    except ObjectDoesNotExist:
+        return Response("You have no workouts!", status=404)
+    
+    serializer = WorkoutSerializer(workouts, many=True)
 
     return Response(serializer.data, status = 200)
 
 
+# TODO: Add user auth / permissions
 @api_view(['GET'])
 def workout_view(request, workout_id, *args, **kwargs):
-    querySet = Workout.objects.filter(workout_id=workout_id)
+    try:
+        workout = Workout.objects.get(workout_id=workout_id)
+    except ObjectDoesNotExist:
+        return Response("This workout Does Not Exist", status=404)
 
-    if not querySet.exists():
-        return Response({}, status=404)
-
-    obj = querySet.first()
-
-    serializer = WorkoutSerializer(obj)
+    serializer = WorkoutSerializer(workout, many=False)
 
     return Response(serializer.data, status=200)
 
 
-# TODO: Add user permissions
-@api_view(['DELETE', 'POST'])
+# TODO: Add user auth / permissions
+@api_view(['POST'])
+def workout_create_view(request, *args, **kwargs):
+    serializer = WorkoutSerializer(data = request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data, status=201)
+
+
+# TODO: Add user auth / permissions
+@api_view(['DELETE'])
 def workout_delete_view(request, workout_id, *args, **kwargs):
-    querySet = Workout.objects.filter(workout_id=workout_id)
+    try:
+        workout = Workout.objects.get(workout_id=workout_id)
+    except ObjectDoesNotExist:
+        return Response("This workout Does Not Exist", status=404)
 
-    if not querySet.exists():
-        return Response({}, status=404)
-
-    obj = querySet.first()
-    obj.delete()
+    workout.delete()
 
     return Response({"message": "You have deleted workout %d" %workout_id}, status=200)
 
 
-# TODO: Workout action view
-# TODO: Add user permissions
+# TODO: Add user auth / permissions
+@api_view(['POST'])
+def workout_update_view(request, workout_id, *args, **kwargs):
+    try:
+        workout = Workout.objects.get(workout_id=workout_id)
+    except ObjectDoesNotExist:
+        return Response("This workout Does Not Exist", status=404)
+
+    serializer = WorkoutSerializer(instance=workout, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data, status=200)
 
 
-# TODO: Exercise List view
+# TODO: Add user auth / permissions
 @api_view(['GET'])
 def exercise_list_view(request, *args, **kwargs):
-    querySet = Exercise.objects.all()
+    try:
+        exercises = Exercise.objects.all()
+    except ObjectDoesNotExist:
+        return Response("There are no exercises in the library", status=404)
 
-    serializer = ExerciseSerializer(querySet, many = True)
+    serializer = ExerciseSerializer(exercises, many=True)
 
-    return Response(serializer.data, status = 200)
+    return Response(serializer.data, status=200)
 
 
-# TODO: Workout Exercise Details list view
+# TODO: Add user auth / permissions
 @api_view(['GET'])
 def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwargs):
-    querySet = WorkoutExerciseDetail.objects.filter(workout_id = workout_id, exercise_id=exercise_id)
+    try:
+        exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
+    except ObjectDoesNotExist:
+        return Response("There is no such exercise in this workout", status=404)
 
-    if not querySet.exists():
-        return Response({}, status = 404)
+    serializer = WorkoutExerciseDetailSerializer(exercise)
 
-    obj = querySet.first()
-
-    serializer = WorkoutExerciseDetailSerializer(obj)
-
-    return Response(serializer.data, status = 200)
+    return Response(serializer.data, status=200)
 
 
-# TODO: Workout Exercise Details action view
-# TODO: Add user permissions
+# TODO: Add user auth / permissions
+@api_view(['POST'])
+def workout_exercise_update_view(request, workout_id, exercise_id, *args, **kwargs):
+    try:
+        exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
+    except ObjectDoesNotExist:
+        return Response("There is no such exercise in this workout", status=404)
+    
+    serializer = WorkoutExerciseDetailSerializer(instance=exercise, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data, status=200)

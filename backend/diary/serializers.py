@@ -8,21 +8,11 @@ from .models import (
     WorkoutExerciseDetail
 )
 
-class WorkoutCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Workout
-        fields = ['workout_id', 'name', 'exercises', 'date', 'notes', 'is_completed']
-
-        def validate_name(self, value):
-            if len(value) > 30:
-                raise serializers.ValidationError("The name of the workout is too long")
-            
-            return value
-
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
-        fields = ['workout_id', 'user', 'name', 'exercises', 'date', 'notes', 'is_completed']
+        fields = '__all__'
+        #fields = ['workout_id', 'user', 'name', 'exercises', 'date', 'notes', 'is_completed']
 
         def get_name(self, obj):
             return obj.name
