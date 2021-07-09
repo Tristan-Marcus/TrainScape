@@ -25,6 +25,8 @@ class Workout(models.Model):
     def __str__(self):
         return "id: " + str(self.workout_id) + "\n" + "name: " + self.name + "\n" + "date: " + str(self.date) + "\n" + "is_completed: " + str(self.is_completed)
 
+    class Meta:
+        ordering = ['date']
 
 def details_data():
     return {'set_1':{'reps':0, 'weight':0, 'distance':0, 'is_completed':False}}
