@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
-
 from .models import (
     Workout, 
     Exercise, 
@@ -22,14 +21,13 @@ from .serializers import (
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
+
 # TODO: Home view
-# TODO: Add user auth / permissions
 @api_view(['GET'])
 def home_view(request, *args, **kwargs):
     return Response("There is currently no Home page", status=200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -44,7 +42,6 @@ def workout_list_view(request, *args, **kwargs):
     return Response(serializer.data, status = 200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -59,7 +56,6 @@ def workout_view(request, workout_id, *args, **kwargs):
     return Response(serializer.data, status=200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -72,7 +68,6 @@ def workout_create_view(request, *args, **kwargs):
     return Response(serializer.data, status=201)
 
 
-# TODO: Add user auth / permissions
 @api_view(['DELETE'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -87,7 +82,6 @@ def workout_delete_view(request, workout_id, *args, **kwargs):
     return Response({"message": "You have deleted workout %d" %workout_id}, status=200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -105,7 +99,6 @@ def workout_update_view(request, workout_id, *args, **kwargs):
     return Response(serializer.data, status=200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -120,7 +113,6 @@ def exercise_list_view(request, *args, **kwargs):
     return Response(serializer.data, status=200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -135,7 +127,6 @@ def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwar
     return Response(serializer.data, status=200)
 
 
-# TODO: Add user auth / permissions
 @api_view(['POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])

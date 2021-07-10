@@ -10,6 +10,8 @@ djangorestframework = "*"
 psycopg2 = "*"
 requests = "*"
 python-dotenv = "*"
+django-rest-auth = "*"
+django-allauth = "*"
 
 [dev-packages]
 
