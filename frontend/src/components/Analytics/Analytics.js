@@ -1,10 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment} from 'react'
 
-import { Navbar } from '../Navbar/Navbar';
-import { WorkoutsNavbar } from './WorkoutsNavbar';
-import { WorkoutsView } from './WorkoutsView'
+import { Navbar } from '../Navbar/Navbar'
 
-export function Workouts() {
+export const Analytics = () => {
     const [userEmail, setUserEmail] = useState('')
     const [loading, setLoading] = useState(true)
 
@@ -28,14 +26,13 @@ export function Workouts() {
     }, [])
 
     return (
-        <div style={{backgroundColor: "gray", height: "100vh"}}>
+        <div>
             {loading === false && (
-            <Fragment>
-                <Navbar />
-                <WorkoutsNavbar />
-                <WorkoutsView />
-            </Fragment>
-            )}
+                <Fragment>
+                    <Navbar/>
+                    <h1>Nothing here</h1> 
+                </Fragment>
+                )}
         </div>
     )
 }

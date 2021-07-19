@@ -3,15 +3,16 @@ from django.conf import settings
 from rest_framework import serializers
 
 from .models import (
-    User,
+    CustomUser,
     Workout, 
     Exercise, 
     WorkoutExerciseDetail
 )
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta: User
-    fields = '__all__'
+    class Meta: 
+        model = CustomUser
+        fields = '__all__'
 
 
 class WorkoutSerializer(serializers.ModelSerializer):

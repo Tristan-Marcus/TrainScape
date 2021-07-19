@@ -1,14 +1,13 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .models import * 
-from .forms import CreateUserForm, UpdateUserForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 
-class UserAdmin(UserAdmin):
-    add_form = CreateUserForm
-    form = UpdateUserForm
-    model = User
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
     list_display = ['email']
 
 
@@ -24,7 +23,7 @@ class WorkouExerciseDetailAdmin(admin.ModelAdmin):
         model = WorkoutExerciseDetail
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Exercise)
 admin.site.register(Workout, WorkoutAdmin)
 admin.site.register(WorkoutExerciseDetail, WorkouExerciseDetailAdmin)

@@ -1,3 +1,4 @@
 .env
 notes.md
 docs
+/backend/diary/migrations
