@@ -1,32 +1,39 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-export function WorkoutTemplate() {
+import { WorkoutModal } from './WorkoutModal'
+
+export function WorkoutTemplate(props) {
+
+    const modalTarget = props.workout.workout_id.toString()
 
     return (
-        <div className="list-group-item list-group-item-action pb-5">
-            <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1 text-success" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="true">Workout Name</h5>
-                <small>Duration: 20 minutes</small>
-                
-                <div className="d-flex">
-                    <button className="btn btn-primary">
-                        Add to Diary
-                    </button>
+        <Fragment>
+            <WorkoutModal modalID={modalTarget} workoutDetails={props.workout}/>
 
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle m-1" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                            ...
+            <div className="list-group-item list-group-item-action pb-5">
+                <div className="d-flex w-100 justify-content-between">
+                    <h5 className="mb-1 text-success" data-bs-toggle="modal" data-bs-target={"#modal" + modalTarget} >{props.workout.name}</h5>
+                    
+                    <div className="d-flex">
+                        <button className="btn btn-primary">
+                            Add to Diary
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><button class="dropdown-item" type="button">Delete</button></li>
-                            <li><button class="dropdown-item" type="button">Duplicate</button></li>
-                        </ul>
+
+                        <div className="dropdown">
+                            <button className="btn btn-primary dropdown-toggle m-1" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                ...
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><button className="dropdown-item" type="button">Delete</button></li>
+                                <li><button className="dropdown-item" type="button">Duplicate</button></li>
+                            </ul>
+                        </div>
                     </div>
+                    
                 </div>
                 
+                <p className="mb-1">{props.workout.notes}</p>
             </div>
-            
-            <p className="mb-1">Workout Description</p>
-        </div>
+        </Fragment>
     )
 }

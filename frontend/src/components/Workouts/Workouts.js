@@ -6,7 +6,22 @@ import { WorkoutsView } from './WorkoutsView'
 
 export function Workouts() {
     const [userEmail, setUserEmail] = useState('')
+    const [workouts, setWorkouts] = useState([])
     const [loading, setLoading] = useState(true)
+
+    const fetchWorkouts = () => {
+        fetch('http://localhost:8000/diary/workouts/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setWorkouts(data)
+        })
+    }
 
     useEffect(() => {
         if (localStorage.getItem('token') === null) {
@@ -19,11 +34,13 @@ export function Workouts() {
                     Authorization: `Token ${localStorage.getItem('token')}`
                 }
             })
-                .then(res => res.json())
-                .then(data => {
-                    setUserEmail(data.email)
-                    setLoading(false)
-                })
+            .then(res => res.json())
+            .then(data => {
+                setUserEmail(data.email)
+                setLoading(false)
+            })
+
+            fetchWorkouts()
         }
     }, [])
 
@@ -33,7 +50,7 @@ export function Workouts() {
             <Fragment>
                 <Navbar />
                 <WorkoutsNavbar />
-                <WorkoutsView />
+                <WorkoutsView workouts={workouts}/>
             </Fragment>
             )}
         </div>

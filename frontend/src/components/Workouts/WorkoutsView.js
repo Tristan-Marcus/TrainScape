@@ -1,20 +1,19 @@
 import React from 'react'
 
-import { WorkoutModal } from './WorkoutModal'
 import { WorkoutTemplate } from './WorkoutTemplate'
 import { NewWorkoutModal } from './NewWorkoutModal'
 
-export function WorkoutsView() {
+export function WorkoutsView(props) {
 
     return (
         <div className="container mt-3" style={{backgroundColor: "white", height: "80vh"}}>
-            <WorkoutModal />
-            <NewWorkoutModal />
             
+            <NewWorkoutModal />
+
             <div className="list-group">
-                <WorkoutTemplate />
-                <WorkoutTemplate />
-                <WorkoutTemplate />
+                {props.workouts.map( element => (
+                    <WorkoutTemplate workout={element}/>
+                ))}
             </div>
 
         </div>

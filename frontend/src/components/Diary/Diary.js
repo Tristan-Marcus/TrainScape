@@ -9,7 +9,22 @@ import { WorkoutCard } from './WorkoutCard'
 
 export const Diary = () => {
     const [userEmail, setUserEmail] = useState('')
+    const [workouts, setWorkouts] = useState([])
     const [loading, setLoading] = useState(true)
+
+    const fetchWorkout = () => {
+        fetch('http://localhost:8000/diary/workouts/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setWorkouts(data)
+        })
+    }
 
     useEffect(() => {
         if (localStorage.getItem('token') === null) {
@@ -27,24 +42,18 @@ export const Diary = () => {
                     setUserEmail(data.email)
                     setLoading(false)
                 })
+            
+            fetchWorkout()
         }
     }, [])
 
-    const fetchWorkout = () => {
-        fetch('http://localhost:8000/diary/workouts/')
-        .then(response => response.json())
-        .then(data =>
-            console.log('Data: ', data) 
-            )
-    } 
+     
  
     return (
         <div className="pb-5" style={{backgroundColor: "gray", height: "100%"}}>
             {loading === false && (
                 <Fragment>
                     <Navbar />
-
-                    {fetchWorkout()}
 
                     <div className="container">
                         

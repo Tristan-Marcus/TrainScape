@@ -29,7 +29,7 @@ def home_view(request, *args, **kwargs):
 
 
 @api_view(['GET'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_list_view(request, *args, **kwargs):
     try:
@@ -43,7 +43,7 @@ def workout_list_view(request, *args, **kwargs):
 
 
 @api_view(['GET'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_view(request, workout_id, *args, **kwargs):
     try:
@@ -57,7 +57,7 @@ def workout_view(request, workout_id, *args, **kwargs):
 
 
 @api_view(['POST'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_create_view(request, *args, **kwargs):
     serializer = WorkoutSerializer(data = request.data)
@@ -69,7 +69,7 @@ def workout_create_view(request, *args, **kwargs):
 
 
 @api_view(['DELETE'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_delete_view(request, workout_id, *args, **kwargs):
     try:
@@ -83,7 +83,7 @@ def workout_delete_view(request, workout_id, *args, **kwargs):
 
 
 @api_view(['POST'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_update_view(request, workout_id, *args, **kwargs):
     try:
@@ -100,7 +100,7 @@ def workout_update_view(request, workout_id, *args, **kwargs):
 
 
 @api_view(['GET'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def exercise_list_view(request, *args, **kwargs):
     try:
@@ -114,7 +114,7 @@ def exercise_list_view(request, *args, **kwargs):
 
 
 @api_view(['GET'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwargs):
     try:
@@ -128,7 +128,7 @@ def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwar
 
 
 @api_view(['POST'])
-@authentication_classes([SessionAuthentication])
+#@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def workout_exercise_update_view(request, workout_id, exercise_id, *args, **kwargs):
     try:

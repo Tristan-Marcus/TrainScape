@@ -8,20 +8,20 @@ export function ExerciseTemplate() {
                 <h5 className="mb-1">Exercise Name</h5>
                 <small>Duration: 5 minutes</small>
                 
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="dropdown">
+                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                         ...
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="button">Delete</button></li>
-                        <li><button class="dropdown-item" type="button">Duplicate</button></li>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><button className="dropdown-item" type="button">Delete</button></li>
+                        <li><button className="dropdown-item" type="button">Duplicate</button></li>
                     </ul>
                 </div>
 
             </div>
             <p className="mb-1">The Exercise Description belongs here</p>
 
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col"></th>
@@ -38,51 +38,51 @@ export function ExerciseTemplate() {
                         <button type="button" className="btn-sm btn-danger">-</button>
                         <th scope="row">1</th>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault"></label>
+                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                            <label className="form-check-label" htmlFor="flexCheckDefault"></label>
                         </td>
                     </tr>
                     <tr>
                         <button type="button" className="btn-sm btn-danger">-</button>
                         <th scope="row">2</th>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault"></label>
+                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                            <label className="form-check-label" htmlFor="flexCheckDefault"></label>
                         </td>
                     </tr>
                     <tr>
                         <button type="button" className="btn-sm btn-danger">-</button>
                         <th scope="row">3</th>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" placeholder="0" />
+                            <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                        <input type="number" class="form-control" placeholder="0" />
+                        <input type="number" className="form-control" placeholder="0" />
                         </td>
                         <td>
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault"></label>
+                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                            <label className="form-check-label" htmlFor="flexCheckDefault"></label>
                         </td>
                     </tr>
                     
