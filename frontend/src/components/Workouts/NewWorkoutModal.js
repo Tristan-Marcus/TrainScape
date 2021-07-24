@@ -5,7 +5,7 @@ import { SearchBar } from '../Diary/SearchBar'
 export function NewWorkoutModal() {
 
     return (
-        <div className="modal fade" id="testModal" tabindex="-1" aria-labelledby="testModalLabel" aria-hidden="true">
+        <div className="modal fade" id="testModal" tabIndex="-1" aria-labelledby="testModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal-content" style={{height: "100vh"}}>
                                 

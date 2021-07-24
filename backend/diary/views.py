@@ -10,13 +10,13 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from .models import (
     Workout, 
     Exercise, 
-    WorkoutExerciseDetail
+    WorkoutExerciseDetail,
 )
 
 from .serializers import (
     WorkoutSerializer,
     ExerciseSerializer,
-    WorkoutExerciseDetailSerializer
+    WorkoutExerciseDetailSerializer,
 )
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
@@ -31,23 +31,25 @@ def home_view(request, *args, **kwargs):
 @api_view(['GET'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_list_view(request, *args, **kwargs):
+def workout_list_view(request, user):
     try:
-        workouts = Workout.objects.all()
+        workouts = Workout.objects.filter(user=user)
+
     except ObjectDoesNotExist:
         return Response("You have no workouts!", status=404)
     
     serializer = WorkoutSerializer(workouts, many=True)
 
-    return Response(serializer.data, status = 200)
+    return Response(serializer.data, status=200)
 
 
 @api_view(['GET'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_view(request, workout_id, *args, **kwargs):
+def workout_view(request, workout_id):
     try:
         workout = Workout.objects.get(workout_id=workout_id)
+        
     except ObjectDoesNotExist:
         return Response("This workout Does Not Exist", status=404)
 
@@ -59,7 +61,7 @@ def workout_view(request, workout_id, *args, **kwargs):
 @api_view(['POST'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_create_view(request, *args, **kwargs):
+def workout_create_view(request):
     serializer = WorkoutSerializer(data = request.data)
 
     if serializer.is_valid():
@@ -71,7 +73,7 @@ def workout_create_view(request, *args, **kwargs):
 @api_view(['DELETE'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_delete_view(request, workout_id, *args, **kwargs):
+def workout_delete_view(request, workout_id):
     try:
         workout = Workout.objects.get(workout_id=workout_id)
     except ObjectDoesNotExist:
@@ -85,7 +87,7 @@ def workout_delete_view(request, workout_id, *args, **kwargs):
 @api_view(['POST'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_update_view(request, workout_id, *args, **kwargs):
+def workout_update_view(request, workout_id):
     try:
         workout = Workout.objects.get(workout_id=workout_id)
     except ObjectDoesNotExist:
@@ -102,7 +104,7 @@ def workout_update_view(request, workout_id, *args, **kwargs):
 @api_view(['GET'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def exercise_list_view(request, *args, **kwargs):
+def exercise_list_view(request):
     try:
         exercises = Exercise.objects.all()
     except ObjectDoesNotExist:
@@ -116,7 +118,7 @@ def exercise_list_view(request, *args, **kwargs):
 @api_view(['GET'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwargs):
+def workout_exercise_detail_view(request, workout_id, exercise_id):
     try:
         exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
     except ObjectDoesNotExist:
@@ -130,7 +132,7 @@ def workout_exercise_detail_view(request, workout_id, exercise_id, *args, **kwar
 @api_view(['POST'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_exercise_update_view(request, workout_id, exercise_id, *args, **kwargs):
+def workout_exercise_update_view(request, workout_id, exercise_id):
     try:
         exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
     except ObjectDoesNotExist:

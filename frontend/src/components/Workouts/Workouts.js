@@ -6,43 +6,58 @@ import { WorkoutsView } from './WorkoutsView'
 
 export function Workouts() {
     const [userEmail, setUserEmail] = useState('')
+    const [userID, setUserID] = useState('')
     const [workouts, setWorkouts] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const fetchWorkouts = () => {
-        fetch('http://localhost:8000/diary/workouts/', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${localStorage.getItem('token')}`
+    const fetchUserData = () => {
+        try {
+            if (localStorage.getItem('token') === null) {
+                window.location.replace('http://localhost:3000/login')
+            } else {
+                fetch('http://localhost:8000/diary/auth/user/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Token ${localStorage.getItem('token')}`
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setUserEmail(data.email)
+                    setUserID(data.pk)
+                    setLoading(false)
+                })
+
             }
-        })
-        .then(res => res.json())
-        .then(data => {
-            setWorkouts(data)
-        })
+        } catch (e) {
+            console.log(e)
+        }
     }
 
-    useEffect(() => {
-        if (localStorage.getItem('token') === null) {
-            window.location.replace('http://localhost:3000/login')
-        } else {
-            fetch('http://localhost:8000/diary/auth/user/', {
+    const fetchWorkouts = () => {
+        try {
+            fetch(`http://localhost:8000/diary/workouts/user${userID}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Token ${localStorage.getItem('token')}`
+                    Authorization: `Token ${localStorage.getItem('token')}`,
                 }
             })
             .then(res => res.json())
             .then(data => {
-                setUserEmail(data.email)
-                setLoading(false)
+                setWorkouts(data)
             })
-
-            fetchWorkouts()
+        } catch (e) {
+            console.log(e)
         }
-    }, [])
+    }
+
+    useEffect(() => {
+        fetchUserData();
+        fetchWorkouts();
+    }, [userID])
+    
 
     return (
         <div style={{backgroundColor: "gray", height: "100vh"}}>

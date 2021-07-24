@@ -33,7 +33,7 @@ export const Login = () => {
             .then(data => {
                 if (data.key) {
                     localStorage.clear();
-                    localStorage.setItem('token', data.key);
+                    localStorage.setItem('token', data.key)
                     window.location.replace('http://localhost:3000/diary')
                 } else {
                     setEmail('')
