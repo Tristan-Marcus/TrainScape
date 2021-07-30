@@ -46,9 +46,9 @@ def details_data():
     return {'set_1':{'reps':0, 'weight':0, 'distance':0, 'is_completed':False}}
 
 class WorkoutExerciseDetail(models.Model):
-    sets = models.JSONField(default=details_data, null=True)                       
+    sets = models.JSONField(default=details_data, blank=True, null=True)                       
     notes = models.TextField(blank=True, null=True)
-    duration = models.TimeField(null=True)
+    duration = models.TimeField(blank=True, null=True)
     workout_id = models.ForeignKey(Workout, null=True, on_delete=models.CASCADE)
     exercise_id = models.ForeignKey(Exercise, null=True, on_delete=models.CASCADE)
     

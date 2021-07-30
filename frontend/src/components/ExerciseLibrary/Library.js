@@ -4,7 +4,7 @@ import { Navbar } from '../Navbar/Navbar'
 import { SearchBar } from '../Diary/SearchBar'
 import { ExerciseCard } from './ExerciseCard'
 
-export function Library() {
+export const Library = () => {
     const [userEmail, setUserEmail] = useState('')
     const [exercises, setExercises] = useState([])
     const [loading, setLoading] = useState(true)

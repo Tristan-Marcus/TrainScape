@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { WorkoutModal } from './WorkoutModal'
 
-export function WorkoutTemplate(props) {
+export const WorkoutTemplate = (props) => {
 
     const modalTarget = props.workout.workout_id.toString()
 

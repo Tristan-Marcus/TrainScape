@@ -4,7 +4,7 @@ import { Navbar } from '../Navbar/Navbar';
 import { WorkoutsNavbar } from './WorkoutsNavbar';
 import { WorkoutsView } from './WorkoutsView'
 
-export function Workouts() {
+export const Workouts = () => {
     const [userEmail, setUserEmail] = useState('')
     const [userID, setUserID] = useState('')
     const [workouts, setWorkouts] = useState([])

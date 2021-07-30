@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function WorkoutsNavbar() {
+export const WorkoutsNavbar = () => {
 
     return (
         <div className="container-fluid mt-5">

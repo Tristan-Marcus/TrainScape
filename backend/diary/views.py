@@ -69,6 +69,17 @@ def workout_create_view(request):
     
     return Response(serializer.data, status=201)
 
+@api_view(['POST'])
+#@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def workout_exercise_create_view(request):
+    serializer = WorkoutExerciseDetailSerializer(data = request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data, status=201)
+
 
 @api_view(['DELETE'])
 #@authentication_classes([SessionAuthentication])
