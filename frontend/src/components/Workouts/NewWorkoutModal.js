@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { SearchBar } from '../Diary/SearchBar'
-import { ExerciseFormCheck } from './ExerciseFormCheck'
+import { ExerciseDataForm } from './ExerciseDataForm'
 
 export const NewWorkoutModal = () => {
     const [userID, setUserID] = useState()
@@ -71,7 +71,6 @@ export const NewWorkoutModal = () => {
             }
             
             var workoutID
-            
 
             fetch('http://localhost:8000/diary/create-workout', {
                 method: 'POST',
@@ -89,7 +88,19 @@ export const NewWorkoutModal = () => {
                 for(let index = 0; index < workoutExercises.length; index++) {
                     let exerciseData = {
                         "workout_id": workoutID,
-                        "exercise_id": parseInt(workoutExercises[index])
+                        "exercise_name": workoutExercises[index].name,
+                        "sets": workoutExercises[index].sets,
+
+                        /*{
+                            'set_1':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false},
+                            'set_2':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false},
+                            'set_3':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false},
+                            'set_4':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false}
+                        }*/
+
+                        "notes": workoutExercises[index].notes,
+                        "duration": workoutExercises[index].duration
+
                     }
 
                     fetch('http://localhost:8000/diary/workouts/add-exercise/', {
@@ -130,10 +141,10 @@ export const NewWorkoutModal = () => {
                     
                     <div className="modal-body">
 
-                            <form className="mt-5" onSubmit={onSubmit}>
+                            <form className="mt-3" onSubmit={onSubmit}>
                     
                                 <div class="mb-3">
-                                    <label htmlFor="name" className="form-label">Name: </label>
+                                    <label htmlFor="name" className="form-label">Workout Name: </label>
                                     <input className="form-control" 
                                         name="name"
                                         type="text"
@@ -144,7 +155,7 @@ export const NewWorkoutModal = () => {
                                 </div>
 
                                 <div class="mb-3">
-                                    <label htmlFor="notes" className="form-label">Notes: </label>
+                                    <label htmlFor="notes" className="form-label">Workout Notes: </label>
                                     <input className="form-control" 
                                         name="notes"
                                         type="text"
@@ -160,12 +171,11 @@ export const NewWorkoutModal = () => {
                                         name="exercises"
                                         type="text"
                                         value={workoutExercises}
-                                        
                                     />
                                 </div>
 
                                 {exercises.map( element => (
-                                    <ExerciseFormCheck onChange={e => setWorkoutExercises([ ...workoutExercises, (e.target.value) ])} exercise={element}/>
+                                    <ExerciseDataForm onChange={e => setWorkoutExercises([ ...workoutExercises, (e.target.value) ])} exercise={element}/>
                                 ))}
                                 
                                 <button type="submit" className="btn btn-primary">Create Workout</button>

@@ -1,12 +1,35 @@
-import React from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 
-export function ExerciseTemplate() {
+export const ExerciseTemplate = (props) => {
+    const [exerciseDetails, setExerciseDetails] = useState({})
+
+    const fetchExerciseDetails = () => {
+        try {
+            fetch(`http://localhost:8000/diary/workouts/${props.workoutID}/${props.exercise}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${localStorage.getItem('token')}`,
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                setExerciseDetails(data)
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        fetchExerciseDetails()
+    }, [])
 
     return (
         <div className="list-group-item list-group-item-action pb-5" aria-current="true">
             <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1">Exercise Name</h5>
-                <small>Duration: 5 minutes</small>
+                <h5 className="mb-1">{exerciseDetails.exercise_name}</h5>
+                <small>Duration: {exerciseDetails.duration}</small>
                 
                 <div className="dropdown">
                     <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -19,7 +42,7 @@ export function ExerciseTemplate() {
                 </div>
 
             </div>
-            <p className="mb-1">The Exercise Description belongs here</p>
+            <p className="mb-1">{exerciseDetails.notes}</p>
 
             <table className="table">
                 <thead>

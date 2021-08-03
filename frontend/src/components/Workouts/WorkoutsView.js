@@ -3,7 +3,7 @@ import React from 'react'
 import { WorkoutTemplate } from './WorkoutTemplate'
 import { NewWorkoutModal } from './NewWorkoutModal'
 
-export function WorkoutsView(props) {
+export const WorkoutsView = (props) => {
 
     return (
         <div className="container mt-3" style={{backgroundColor: "white", height: "80vh"}}>

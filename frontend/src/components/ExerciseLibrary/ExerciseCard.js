@@ -5,9 +5,6 @@ export function ExerciseCard(props) {
 
     return (
         <div class="col">
-
-            {console.log(props)}
-
             <div class="card h-100">
                 <img src="..." class="card-img-top" alt="..."/>
                 <div class="card-body">

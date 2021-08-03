@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ExerciseTemplate } from './ExerciseTemplate'
 
-export function WorkoutModal(props) {
+export const WorkoutModal = (props) => {
 
     return (
         <div className="modal fade" id={"modal" + props.modalID} tabIndex="-1">
@@ -18,7 +18,7 @@ export function WorkoutModal(props) {
                         <div className="list-group">
                         
                             {props.workoutDetails.exercises.map( element => (
-                                <ExerciseTemplate exercise={element} />
+                                <ExerciseTemplate workoutID={props.workoutDetails.workout_id} exercise={element} />
                             ))}
                             
                         </div>
