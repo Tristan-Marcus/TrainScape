@@ -129,9 +129,9 @@ def exercise_list_view(request):
 @api_view(['GET'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_exercise_detail_view(request, workout_id, exercise_id):
+def workout_exercise_detail_view(request, workout_id, exercise_name):
     try:
-        exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
+        exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_name=exercise_name)
     except ObjectDoesNotExist:
         return Response("There is no such exercise in this workout", status=404)
 
@@ -143,9 +143,9 @@ def workout_exercise_detail_view(request, workout_id, exercise_id):
 @api_view(['POST'])
 #@authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def workout_exercise_update_view(request, workout_id, exercise_id):
+def workout_exercise_update_view(request, workout_id, exercise_name):
     try:
-        exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_id=exercise_id)
+        exercise = WorkoutExerciseDetail.objects.get(workout_id=workout_id, exercise_name=exercise_name)
     except ObjectDoesNotExist:
         return Response("There is no such exercise in this workout", status=404)
     

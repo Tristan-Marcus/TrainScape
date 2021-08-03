@@ -18,13 +18,13 @@ class CustomUser(AbstractUser):
 
 
 class Exercise(models.Model):
-    name = models.CharField(max_length=40, null=True)
+    name = models.CharField(primary_key=True, max_length=50)
 
     # TODO: Add image field
     #image = 
 
     description = models.TextField(blank=True, null=True)
-    exercise_id = models.AutoField(primary_key=True)
+    # exercise_id = models.AutoField(primary_key=True)
 
 
 class Workout(models.Model): 
@@ -50,6 +50,6 @@ class WorkoutExerciseDetail(models.Model):
     notes = models.TextField(blank=True, null=True)
     duration = models.TimeField(blank=True, null=True)
     workout_id = models.ForeignKey(Workout, null=True, on_delete=models.CASCADE)
-    exercise_id = models.ForeignKey(Exercise, null=True, on_delete=models.CASCADE)
+    exercise_name = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     
 
