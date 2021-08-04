@@ -90,17 +90,8 @@ export const NewWorkoutModal = () => {
                         "workout_id": workoutID,
                         "exercise_name": workoutExercises[index].name,
                         "sets": workoutExercises[index].sets,
-
-                        /*{
-                            'set_1':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false},
-                            'set_2':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false},
-                            'set_3':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false},
-                            'set_4':{'reps':0, 'weight':0, 'distance':0, 'is_completed':false}
-                        }*/
-
                         "notes": workoutExercises[index].notes,
                         "duration": workoutExercises[index].duration
-
                     }
 
                     fetch('http://localhost:8000/diary/workouts/add-exercise/', {
@@ -132,7 +123,7 @@ export const NewWorkoutModal = () => {
     return (
         <div className="modal fade" id="testModal" tabIndex="-1" aria-labelledby="testModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div className="modal-content" style={{height: "60vh"}}>
+                <div className="modal-content" style={{height: "80vh"}}>
                                 
                     <div className="modal-header">
                         <h5 className="modal-title" id="testModalLabel">Create your workout</h5>
