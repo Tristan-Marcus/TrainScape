@@ -1,8 +1,26 @@
-import React, { Fragment } from 'react'
+import React, { useEffect, Fragment } from 'react'
 
 import { WorkoutModal } from './WorkoutModal'
 
 export const WorkoutTemplate = (props) => {
+
+    const deleteWorkout = () => {
+        try {
+            fetch(`http://localhost:8000/diary/delete-workout/${props.workout.workout_id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${localStorage.getItem('token')}`,
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const modalTarget = props.workout.workout_id.toString()
 
@@ -24,8 +42,7 @@ export const WorkoutTemplate = (props) => {
                                 ...
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><button className="dropdown-item" type="button">Delete</button></li>
-                                <li><button className="dropdown-item" type="button">Duplicate</button></li>
+                                <li><button className="dropdown-item" type="button" onClick={deleteWorkout}>Delete</button></li>
                             </ul>
                         </div>
                     </div>

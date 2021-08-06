@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useCallback } from 'react';
 
 import { Navbar } from '../Navbar/Navbar';
 import { WorkoutsNavbar } from './WorkoutsNavbar';
@@ -35,7 +35,7 @@ export const Workouts = () => {
         }
     }
 
-    const fetchWorkouts = () => {
+    const fetchWorkouts = useCallback(() => {
         try {
             fetch(`http://localhost:8000/diary/workouts/user${userID}`, {
                 method: 'GET',
@@ -51,13 +51,12 @@ export const Workouts = () => {
         } catch (e) {
             console.log(e)
         }
-    }
+    }, [userID])
 
     useEffect(() => {
-        fetchUserData();
-        fetchWorkouts();
-    }, [userID])
-    
+        fetchUserData()
+        fetchWorkouts()
+    }, [userID, fetchWorkouts])
 
     return (
         <div style={{backgroundColor: "gray", height: "100vh"}}>
