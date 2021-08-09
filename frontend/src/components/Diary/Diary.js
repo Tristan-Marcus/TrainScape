@@ -8,8 +8,8 @@ import { WorkoutCard } from './WorkoutCard'
 
 
 export const Diary = () => {
-    const [userEmail, setUserEmail] = useState('')
-    const [workouts, setWorkouts] = useState([])
+    //const [userEmail, setUserEmail] = useState('')
+    //const [workouts, setWorkouts] = useState([])
     const [loading, setLoading] = useState(true)
 
     const fetchWorkout = () => {
@@ -22,7 +22,7 @@ export const Diary = () => {
         })
         .then(res => res.json())
         .then(data => {
-            setWorkouts(data)
+            //setWorkouts(data)
         })
     }
 
@@ -39,7 +39,7 @@ export const Diary = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    setUserEmail(data.email)
+                    //setUserEmail(data.email)
                     setLoading(false)
                 })
             

@@ -39,41 +39,41 @@ export function Profile() {
                     <div className="d-flex flex-column align-items-center justify-content-center mt-5">
                         <form className="mt-5">
 
-                            <div class="mb-3">
-                                <label for="exampleInputName1" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp"/>
-                                <div id="nameHelp" class="form-text"></div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputName1" className="form-label">First Name</label>
+                                <input type="text" className="form-control" id="exampleInputName1" aria-describedby="nameHelp"/>
+                                <div id="nameHelp" className="form-text"></div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="exampleInputName2" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="exampleInputName2" aria-describedby="nameHelp"/>
-                                <div id="nameHelp" class="form-text"></div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputName2" className="form-label">Last Name</label>
+                                <input type="text" className="form-control" id="exampleInputName2" aria-describedby="nameHelp"/>
+                                <div id="nameHelp" className="form-text"></div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                <div id="emailHelp" class="form-text"></div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                                <input type="email" defaultValue={userEmail} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                                <div id="emailHelp" className="form-text"></div>
                             </div>
                             
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"/>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                                <input type="password" className="form-control" id="exampleInputPassword1"/>
                             </div>
                             
                             
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" className="btn btn-primary">Save</button>
                         </form>
 
                         <div className="mt-5">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                            <label class="form-check-label" for="flexRadioDefault1">
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                            <label className="form-check-label" htmlFor="flexRadioDefault1">
                                 ON
                             </label>
 
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
-                            <label class="form-check-label" for="flexRadioDefault2">
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
+                            <label className="form-check-label" htmlFor="flexRadioDefault2">
                                 OFF
                             </label>
                         </div>

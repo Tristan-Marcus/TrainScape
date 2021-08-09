@@ -5,7 +5,7 @@ import { SearchBar } from '../Diary/SearchBar'
 import { ExerciseCard } from './ExerciseCard'
 
 export const Library = () => {
-    const [userEmail, setUserEmail] = useState('')
+    //const [userEmail, setUserEmail] = useState('')
     const [exercises, setExercises] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -23,7 +23,7 @@ export const Library = () => {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    setUserEmail(data.email)
+                    //setUserEmail(data.email)
                     setLoading(false)
                 })
 

@@ -9,7 +9,7 @@ export const Navbar = () => {
         if (localStorage.getItem('token') !== null) {
             setIsAuth(true)
         }
-    }, [])
+    }, [isAuth])
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

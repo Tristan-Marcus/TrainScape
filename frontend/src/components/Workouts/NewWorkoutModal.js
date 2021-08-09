@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-import { SearchBar } from '../Diary/SearchBar'
+//import { SearchBar } from '../Diary/SearchBar'
 import { ExerciseDataForm } from './ExerciseDataForm'
 
 export const NewWorkoutModal = () => {
     const [userID, setUserID] = useState()
-    const [loading, setLoading] = useState(true)
+    //const [loading, setLoading] = useState(true)
 
-    const [exercises, setExercises] = useState([])
+    const [allExercises, setAllExercises] = useState([])
 
     const [workoutName, setWorkoutName] = useState('')
     const [workoutNotes, setWorkoutNotes] = useState('')
@@ -29,7 +29,7 @@ export const NewWorkoutModal = () => {
                 .then(res => res.json())
                 .then(data => {
                     setUserID(data.pk)
-                    setLoading(false)
+                    //setLoading(false)
                 })
 
             }
@@ -49,7 +49,7 @@ export const NewWorkoutModal = () => {
             })
             .then(res => res.json())
             .then(data => {
-                setExercises(data)
+                setAllExercises(data)
             })
         } catch (e) {
             console.log(e)
@@ -58,9 +58,9 @@ export const NewWorkoutModal = () => {
 
 
     const onSubmit = e => {
-        try {
-            e.preventDefault()
+        e.preventDefault()
 
+        try {
             const WorkoutData = {
                 name: workoutName,
                 date: new Date(),
@@ -134,7 +134,7 @@ export const NewWorkoutModal = () => {
 
                             <form className="mt-3" onSubmit={onSubmit}>
                     
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Workout Name: </label>
                                     <input className="form-control" 
                                         name="name"
@@ -145,7 +145,7 @@ export const NewWorkoutModal = () => {
                                     />
                                 </div>
 
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label htmlFor="notes" className="form-label">Workout Notes: </label>
                                     <input className="form-control" 
                                         name="notes"
@@ -165,7 +165,7 @@ export const NewWorkoutModal = () => {
                                     />
                                 </div>
 
-                                {exercises.map( element => (
+                                {allExercises.map( element => (
                                     <ExerciseDataForm onChange={e => setWorkoutExercises([ ...workoutExercises, (e.target.value) ])} exercise={element}/>
                                 ))}
                                 

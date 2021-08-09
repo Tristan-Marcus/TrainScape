@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export const ExerciseTemplate = (props) => {
     const [exerciseDetails, setExerciseDetails] = useState({})
@@ -23,7 +23,7 @@ export const ExerciseTemplate = (props) => {
 
     useEffect(() => {
         fetchExerciseDetails()
-    }, [])
+    })
 
     return (
         <div className="list-group-item list-group-item-action pb-5" aria-current="true">

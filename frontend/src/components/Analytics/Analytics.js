@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment} from 'react'
 import { Navbar } from '../Navbar/Navbar'
 
 export const Analytics = () => {
-    const [userEmail, setUserEmail] = useState('')
+    // const [userEmail, setUserEmail] = useState('')
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export const Analytics = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    setUserEmail(data.email)
+                    // setUserEmail(data.email)
                     setLoading(false)
                 })
         }

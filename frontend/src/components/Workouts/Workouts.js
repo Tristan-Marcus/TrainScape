@@ -5,7 +5,7 @@ import { WorkoutsNavbar } from './WorkoutsNavbar';
 import { WorkoutsView } from './WorkoutsView'
 
 export const Workouts = () => {
-    const [userEmail, setUserEmail] = useState('')
+    //const [userEmail, setUserEmail] = useState('')
     const [userID, setUserID] = useState('')
     const [workouts, setWorkouts] = useState([])
     const [loading, setLoading] = useState(true)
@@ -24,7 +24,7 @@ export const Workouts = () => {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    setUserEmail(data.email)
+                    //setUserEmail(data.email)
                     setUserID(data.pk)
                     setLoading(false)
                 })
@@ -36,22 +36,24 @@ export const Workouts = () => {
     }
 
     const fetchWorkouts = useCallback(() => {
-        try {
-            fetch(`http://localhost:8000/diary/workouts/user${userID}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Token ${localStorage.getItem('token')}`,
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                setWorkouts(data)
-            })
-        } catch (e) {
-            console.log(e)
+        if (loading === false) {
+            try {
+                fetch(`http://localhost:8000/diary/workouts/user${userID}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Token ${localStorage.getItem('token')}`,
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setWorkouts(data)
+                })
+            } catch (e) {
+                console.log(e)
+            }
         }
-    }, [userID])
+    }, [userID, loading])
 
     useEffect(() => {
         fetchUserData()
