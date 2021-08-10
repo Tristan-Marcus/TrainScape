@@ -86,6 +86,7 @@ export const NewWorkoutModal = () => {
                 workoutID = data.workout_id
 
                 for(let index = 0; index < workoutExercises.length; index++) {
+                    
                     let exerciseData = {
                         "workout_id": workoutID,
                         "exercise_name": workoutExercises[index].name,
