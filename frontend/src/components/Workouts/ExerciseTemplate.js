@@ -23,7 +23,7 @@ export const ExerciseTemplate = (props) => {
 
     useEffect(() => {
         fetchExerciseDetails()
-    })
+    }, [])
 
     return (
         <div className="list-group-item list-group-item-action pb-5" aria-current="true">

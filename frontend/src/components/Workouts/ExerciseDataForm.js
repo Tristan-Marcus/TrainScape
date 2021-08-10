@@ -1,14 +1,14 @@
-import React, { /*useEffect,*/ useState, Fragment } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 
 export const ExerciseDataForm = (props) => {
+    const [readyFlag, setReadyFlag] = useState(false)
+
     const [exerciseData, setExerciseData] = useState({
         name: "",
         notes: "",
         duration: "",
-        sets: [{}]
+        sets: [{reps: 0, weight: 0, distance: 0}]
     })
-
-    const [exerciseSets, setExerciseSets] = useState([])
 
     const exerciseDataHandler = (event) => {
         setExerciseData( (prevState) => ({
@@ -17,19 +17,14 @@ export const ExerciseDataForm = (props) => {
         }))
     }
 
-    const addSets = () => {
-        var currentSets = exerciseSets
-        exerciseSets.push(exerciseSets.length + 1)
-        setExerciseSets(currentSets)
-    }
-
-    /*
     useEffect( () => {
-        console.log(exerciseData)
-    }, [exerciseData])
-    */
-
+        if(readyFlag === true) {
+            console.log(exerciseData)
+            props.onChange(exerciseData)
+        }
+    }, [readyFlag])
     
+
     return (
         <Fragment>
                 <div className="form-control mb-3">
@@ -40,49 +35,59 @@ export const ExerciseDataForm = (props) => {
                     </div>
 
                     {// TODO: find a way to get set data input
+                    /*
                         <div className="m-3">
                             <table>
                                 <tbody>
-                                    {exerciseSets.map((r) => (
-                                        <tr className='d-block'> 
-                                            <td>
-                                                Set {r}
-                                            </td>
-                                        
-                                            <td >
-                                                <label className="form-label" htmlFor="repInput">
-                                                    Reps
-                                                </label>
-                                                <input id='repInput' style={{width: "60px"}} type="number"/>
-                                            </td>
-                                        
-                                            <td>
-                                                <label className="form-label" htmlFor="weightInput">
-                                                    Weight
-                                                </label>
-                                                <input id='weightInput' style={{width: "100px"}} type="number"/>
-                                            </td>
-                                            
-                                            <td>
-                                                <label className="form-label" htmlFor="distanceInput">
-                                                    Distance
-                                                </label>
-                                                <input id='distanceInput' style={{width: "100px"}} type="number"/>
-                                            </td>
-                                            
-                                        </tr>
-                                    ))}
+                                    <Fragment>
+                                        {exerciseData.sets.map((set, i) => {
+                                            return (
+                                                <tr className='d-block' key={i}> 
+                                                    <td>
+                                                        Set {i}
+                                                    </td>
+                                                
+                                                    <td>
+                                                        <label className="form-label" htmlFor="reps">
+                                                            Reps
+                                                        </label>
+                                                        <input id='reps' value={set.reps} style={{width: "60px"}} type="number" onChange={e => handleInputChange(e, i)}/>
+                                                    </td>
+                                                
+                                                    <td>
+                                                        <label className="form-label" htmlFor="weight">
+                                                            Weight
+                                                        </label>
+                                                        <input id='weight' value={set.weight} style={{width: "100px"}} type="number" onChange={e => handleInputChange(e, i)}/>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <label className="form-label" htmlFor="distance">
+                                                            Distance
+                                                        </label>
+                                                        <input id='distance' value={set.distance} style={{width: "100px"}} type="number" onChange={e => handleInputChange(e, i)}/>
+                                                    </td>
+
+                                                    <td>
+                                                        {exerciseData.sets.length !== 1 && <button onClick={() => removeSets(i)}>Remove</button>}
+                                                        {exerciseData.sets.length - 1 === i && <button onClick={addSets}>Add</button>}
+                                                    </td>
+                                                
+                                                </tr>
+                                            )
+                                        })}
+                                    </Fragment>
+                                     
                                 </tbody>
-                                
                             </table>
-                            <button className="m-3" onClick={addSets}> Add a Set</button>
                         </div>
+                        */
                     }
                     
                     
                     <div className="mb-1 d-flex">
                         <label className="form-label m-1" htmlFor="notes">
-                            Notes: {exerciseData.notes}
+                            Notes:
                         </label>
                         <input className="form-control" type="text" value={exerciseData.notes} id="notes" onChange={exerciseDataHandler} />
                     </div>
@@ -90,10 +95,12 @@ export const ExerciseDataForm = (props) => {
 
                     <div className="mb-1 d-flex">
                         <label className="form-label m-1" htmlFor="duration">
-                            Duration: {exerciseData.duration}
+                            Duration:
                         </label>
                         <input className="form-control" type="text" value={exerciseData.duration} id="duration" onChange={exerciseDataHandler}/>
                     </div>
+
+                    <button type="button" onClick={(event) => setReadyFlag(true)}>Click this when all data is added</button>
                     
                 </div>
             

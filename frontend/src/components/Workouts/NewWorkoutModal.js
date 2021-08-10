@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 
 //import { SearchBar } from '../Diary/SearchBar'
 import { ExerciseDataForm } from './ExerciseDataForm'
@@ -162,13 +162,16 @@ export const NewWorkoutModal = () => {
                                     <input className="form-control" 
                                         name="exercises"
                                         type="text"
-                                        value={workoutExercises}
+                                        defaultValue={workoutExercises}
                                     />
                                 </div>
-
-                                {allExercises.map( element => (
-                                    <ExerciseDataForm onChange={e => setWorkoutExercises([ ...workoutExercises, (e.target.value) ])} exercise={element}/>
-                                ))}
+                                
+                                <Fragment>
+                                    {allExercises.map( (element, i) => {
+                                        return <ExerciseDataForm key={i} onChange={e => setWorkoutExercises([ ...workoutExercises, (e) ])} exercise={element}/>
+                                    })}
+                                </Fragment>
+                                
                                 
                                 <button type="submit" className="btn btn-primary">Create Workout</button>
                             </form>
