@@ -7,8 +7,12 @@ export const ExerciseDataForm = (props) => {
         name: "",
         notes: "",
         duration: "",
-        sets: [{reps: 0, weight: 0, distance: 0}]
+        sets: []
     })
+
+    const [tempReps, setReps] = useState()
+    const [tempWeight, setWeight] = useState()
+    const [tempDistance, setDistance] = useState()
 
     const exerciseDataHandler = (event) => {
         setExerciseData( (prevState) => ({
@@ -17,12 +21,42 @@ export const ExerciseDataForm = (props) => {
         }))
     }
 
+    const setDataHandler = (event) => {
+        switch(event.target.id) {
+            case "tempReps":
+                setReps(event.target.value)
+                break;
+            case "tempWeight":
+                setWeight(event.target.value)
+                break;
+            case "tempDistance":
+                setDistance(event.target.value)
+                break;
+            default:
+                console.log("Set data could not be handled")
+        }
+    }
+
+    const exerciseSetsDataHandler = () => {
+        setExerciseData( (prevState) => ( {
+            ...prevState,
+            sets: {reps: tempReps, weight: tempWeight, distance: tempDistance}
+        }))
+    }
+
+    useEffect( () => {
+        exerciseSetsDataHandler()
+    }, [tempReps, tempWeight, tempDistance])
+
     useEffect( () => {
         if(readyFlag === true) {
             console.log(exerciseData)
+            console.log(tempReps, tempWeight)
             props.onChange(exerciseData)
         }
     }, [readyFlag])
+
+    
     
 
     return (
@@ -33,57 +67,41 @@ export const ExerciseDataForm = (props) => {
                         <input className="form-check-input m-1" type="checkbox" value={props.exercise.name} id="name" onChange={exerciseDataHandler}/>
                         <label className="form-check-label" htmlFor="name"> {props.exercise.name} </label>
                     </div>
-
-                    {// TODO: find a way to get set data input
-                    /*
-                        <div className="m-3">
-                            <table>
-                                <tbody>
-                                    <Fragment>
-                                        {exerciseData.sets.map((set, i) => {
-                                            return (
-                                                <tr className='d-block' key={i}> 
-                                                    <td>
-                                                        Set {i}
-                                                    </td>
-                                                
-                                                    <td>
-                                                        <label className="form-label" htmlFor="reps">
-                                                            Reps
-                                                        </label>
-                                                        <input id='reps' value={set.reps} style={{width: "60px"}} type="number" onChange={e => handleInputChange(e, i)}/>
-                                                    </td>
-                                                
-                                                    <td>
-                                                        <label className="form-label" htmlFor="weight">
-                                                            Weight
-                                                        </label>
-                                                        <input id='weight' value={set.weight} style={{width: "100px"}} type="number" onChange={e => handleInputChange(e, i)}/>
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        <label className="form-label" htmlFor="distance">
-                                                            Distance
-                                                        </label>
-                                                        <input id='distance' value={set.distance} style={{width: "100px"}} type="number" onChange={e => handleInputChange(e, i)}/>
-                                                    </td>
-
-                                                    <td>
-                                                        {exerciseData.sets.length !== 1 && <button onClick={() => removeSets(i)}>Remove</button>}
-                                                        {exerciseData.sets.length - 1 === i && <button onClick={addSets}>Add</button>}
-                                                    </td>
-                                                
-                                                </tr>
-                                            )
-                                        })}
-                                    </Fragment>
-                                     
-                                </tbody>
-                            </table>
-                        </div>
-                        */
-                    }
                     
+                    <div className="m-3">
+                        <table>
+                            <tbody> 
+                                <tr className='d-block'> 
+                                    <td>
+                                        Set 1
+                                    </td>
+                                
+                                    <td>
+                                        <label className="form-label" htmlFor="reps">
+                                            Reps
+                                        </label>
+                                        <input id='tempReps' value={exerciseData.sets.reps} style={{width: "60px"}} type="number" onChange={setDataHandler}/>
+                                    </td>
+                                
+                                    <td>
+                                        <label className="form-label" htmlFor="weight">
+                                            Weight
+                                        </label>
+                                        <input id='tempWeight' value={exerciseData.sets.weight} style={{width: "100px"}} type="number" onChange={setDataHandler}/>
+                                    </td>
+                                    
+                                    <td>
+                                        <label className="form-label" htmlFor="distance">
+                                            Distance
+                                        </label>
+                                        <input id='tempDistance' value={exerciseData.sets.distance} style={{width: "100px"}} type="number" onChange={setDataHandler}/>
+                                    </td>
+                                
+                                </tr>
+                                    
+                            </tbody>
+                        </table>
+                    </div>
                     
                     <div className="mb-1 d-flex">
                         <label className="form-label m-1" htmlFor="notes">

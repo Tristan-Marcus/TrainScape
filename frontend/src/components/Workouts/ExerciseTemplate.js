@@ -21,8 +21,31 @@ export const ExerciseTemplate = (props) => {
         }
     }
 
+    const handleExerciseDataDisplay = () => {
+        exerciseDetails.sets.map( element => (
+            <tr>
+                <button type="button" className="btn-sm btn-danger">-</button>
+                <th scope="row">1</th>
+                <td>
+                    <input type="number" className="form-control" placeholder="0" />
+                </td>
+                <td>
+                    <input type="number" className="form-control" placeholder="0" />
+                </td>
+                <td>
+                    <input type="number" className="form-control" placeholder="0" />
+                </td>
+                <td>
+                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <label className="form-check-label" htmlFor="flexCheckDefault"></label>
+                </td>
+            </tr>
+        ))
+    }
+
     useEffect(() => {
         fetchExerciseDetails()
+        console.log(exerciseDetails)
     }, [])
 
     return (
@@ -57,57 +80,12 @@ export const ExerciseTemplate = (props) => {
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <button type="button" className="btn-sm btn-danger">-</button>
-                        <th scope="row">1</th>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label className="form-check-label" htmlFor="flexCheckDefault"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <button type="button" className="btn-sm btn-danger">-</button>
-                        <th scope="row">2</th>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label className="form-check-label" htmlFor="flexCheckDefault"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <button type="button" className="btn-sm btn-danger">-</button>
-                        <th scope="row">3</th>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                        <input type="number" className="form-control" placeholder="0" />
-                        </td>
-                        <td>
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label className="form-check-label" htmlFor="flexCheckDefault"></label>
-                        </td>
-                    </tr>
+
+                    <div className="list-group">
+                        {handleExerciseDataDisplay}
+                    </div>
+                    
+                    
                     
                 </tbody>
 
