@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment} from 'react'
 
-import { Navbar } from '../Navbar/Navbar'
+import { Navbar } from '../../../components/Navbar'
 
 export const Analytics = () => {
     // const [userEmail, setUserEmail] = useState('')

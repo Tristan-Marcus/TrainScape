@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment, useCallback } from 'react';
 
-import { Navbar } from '../Navbar/Navbar';
+import { Navbar } from '../../../components/Navbar';
 import { WorkoutsNavbar } from './WorkoutsNavbar';
 import { WorkoutsView } from './WorkoutsView'
 

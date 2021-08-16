@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SearchBar } from './SearchBar'
+import { SearchBar } from '../../../components/SearchBar'
 import { WorkoutTemplate } from './WorkoutTemplate'
 
 export function AddWorkoutModal() {

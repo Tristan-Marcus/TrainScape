@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react'
 
-import { Navbar } from '../Navbar/Navbar'
+import { Navbar } from '../../../components/Navbar'
 import { WeekButton } from './WeekButton'
 import { AddWorkoutButton } from './AddWorkoutButton'
 import { AddWorkoutModal } from './AddWorkoutModal'

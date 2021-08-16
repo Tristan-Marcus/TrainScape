@@ -1,18 +1,17 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { Login } from './components/Login';
-import { Logout } from './components/Logout'
-import { Register } from './components/Register'
-import { Diary } from './components/Diary/Diary'
-import { Workouts } from './components/Workouts/Workouts'
-import { Library } from './components/ExerciseLibrary/Library'
-import { Analytics } from './components/Analytics/Analytics'
-import { Profile } from './components/Profile/Profile'
-
+import { Login } from './containers/Homepage/components/Login';
+import { Logout } from './containers/Homepage/components/Logout'
+import { Register } from './containers/Homepage/components/Register'
+import { Diary } from './containers/Diary/components/Diary'
+import { Workouts } from './containers/Workouts/components/Workouts'
+import { Library } from './containers/ExerciseLibrary/components/Library'
+import { Analytics } from './containers/Analytics/components/Analytics'
+import { Profile } from './containers/Profile/components/Profile'
 
 import './App.css';
 
-const App = () => {
+function App() {
 
   return (
     <div className="App">
@@ -28,9 +27,6 @@ const App = () => {
           <Route path='/profile'    component={Profile}   exact />
         </Switch>
       </Router>
-
-      
-      
     </div>
   );
 }
