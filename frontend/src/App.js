@@ -25,6 +25,7 @@ function App() {
           <Route path='/library'    component={Library}   exact />
           <Route path='/analytics'  component={Analytics} exact />
           <Route path='/profile'    component={Profile}   exact />
+          <Route>404 Not Found</Route>
         </Switch>
       </Router>
     </div>

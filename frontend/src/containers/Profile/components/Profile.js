@@ -1,29 +1,51 @@
 import React, { useState, useEffect, Fragment } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { createSelector } from 'reselect'
+import Axios from 'axios'
 
 import { Navbar } from '../../../components/Navbar';
 import { ProfilePanel } from './ProfilePanel';
 
+import { makeSelectUser } from '../selectors';
+import { setUser } from '../actions';
+
+
+const stateSelector = createSelector(makeSelectUser, (user) => ({
+    user
+}))
+
+const actionDispatch = (dispatch) => ({
+    setUser: (user) => dispatch(setUser(user))
+})
+
 export function Profile() {
-    const [userEmail, setUserEmail] = useState('')
+    const { user } = useSelector(stateSelector)
+    const { setUser } = actionDispatch(useDispatch())
+
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+    const fetchUserData = async () => {
         if (localStorage.getItem('token') === null) {
             window.location.replace('http://localhost:3000/login')
         } else {
-            fetch('http://localhost:8000/diary/auth/user/', {
-                method: 'GET',
+            const response = await Axios.get('http://localhost:8000/diary/auth/user/', {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${localStorage.getItem('token')}`
                 }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setUserEmail(data.email)
-                    setLoading(false)
-                })
+            }).catch(
+                (error) => {
+                    console.log("An Error occurred trying to get user details: ", error)
+                }
+            )
+
+            setUser(response.data)
+            setLoading(false)
         }
+    }
+
+    useEffect(() => {
+        fetchUserData()
     }, [])
 
     return (
@@ -41,19 +63,19 @@ export function Profile() {
 
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName1" className="form-label">First Name</label>
-                                <input type="text" className="form-control" id="exampleInputName1" aria-describedby="nameHelp"/>
+                                <input type="text" defaultValue={user.first_name} className="form-control" id="exampleInputName1" aria-describedby="nameHelp"/>
                                 <div id="nameHelp" className="form-text"></div>
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="exampleInputName2" className="form-label">Last Name</label>
-                                <input type="text" className="form-control" id="exampleInputName2" aria-describedby="nameHelp"/>
+                                <input type="text" defaultValue={user.last_name} className="form-control" id="exampleInputName2" aria-describedby="nameHelp"/>
                                 <div id="nameHelp" className="form-text"></div>
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                <input type="email" defaultValue={userEmail} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                                <input type="email" defaultValue={user.email} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
                                 <div id="emailHelp" className="form-text"></div>
                             </div>
                             

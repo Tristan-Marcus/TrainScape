@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import Axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
+import Axios from 'axios'
+
 import { createSelector } from 'reselect'
 import { makeSelectExercises } from '../selectors'
 
@@ -37,7 +38,6 @@ export const Library = () => {
                 console.log("Fetch User Data Error: ", error)
             })
         }
-
         setLoading(false)
     }
 

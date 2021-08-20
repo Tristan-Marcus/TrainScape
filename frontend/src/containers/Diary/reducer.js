@@ -1,5 +1,5 @@
 const defaultState = {
-
+    
 }
 
 export default function diaryReducer(state = defaultState, action) {

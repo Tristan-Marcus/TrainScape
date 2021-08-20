@@ -1,14 +1,37 @@
 import React, { useState, useEffect, Fragment, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import Axios from 'axios'
+
+import { createSelector } from 'reselect'
+import { makeSelectExercises } from '../selectors'
+
+import { setWorkouts } from '../actions';
 
 import { Navbar } from '../../../components/Navbar';
 import { WorkoutsNavbar } from './WorkoutsNavbar';
 import { WorkoutsView } from './WorkoutsView'
 
+/*
+const stateSelector = createSelector(makeSelectWorkouts, (workouts) => ({
+    workouts
+}))
+
+const actionDispatch = (dispatch) => ({
+    setWorkouts: (workouts) => dispatch(setWorkouts(workouts))
+})
+*/
+
 export const Workouts = () => {
+    //const { workouts } = useSelector(stateSelector)
+    //const { setWorkouts } = actionDispatch(useDispatch())
+
+    const [loading, setLoading] = useState(true)
+
+
+
     //const [userEmail, setUserEmail] = useState('')
     const [userID, setUserID] = useState('')
     const [workouts, setWorkouts] = useState([])
-    const [loading, setLoading] = useState(true)
 
     const fetchUserData = () => {
         try {
