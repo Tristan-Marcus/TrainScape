@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { Login } from './containers/Homepage/components/Login';
-import { Logout } from './containers/Homepage/components/Logout'
-import { Register } from './containers/Homepage/components/Register'
+import { Login } from './containers/UserAuth/components/Login';
+import { Logout } from './containers/UserAuth/components/Logout'
+import { Register } from './containers/UserAuth/components/Register'
 import { Diary } from './containers/Diary/components/Diary'
 import { Workouts } from './containers/Workouts/components/Workouts'
 import { Library } from './containers/ExerciseLibrary/components/Library'
