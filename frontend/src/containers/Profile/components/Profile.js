@@ -4,10 +4,12 @@ import { createSelector } from 'reselect'
 import Axios from 'axios'
 
 import { Navbar } from '../../../components/Navbar';
-import { ProfilePanel } from './ProfilePanel';
+import { PersonalInfoForm } from './PersonalInfoForm';
+import { NotificationsForm } from './NotificationsForm';
+import { AccountDetailsForm } from './AccountDetailsForm';
 
-import { makeSelectUser } from '../selectors';
 import { setUser } from '../actions';
+import { makeSelectUser } from '../selectors';
 
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
@@ -21,6 +23,12 @@ const actionDispatch = (dispatch) => ({
 export function Profile() {
     const { user } = useSelector(stateSelector)
     const { setUser } = actionDispatch(useDispatch())
+
+    const [formSelected, setFormSelected] = useState({
+        personalInfo: true,
+        accountInfo: false,
+        notifications: false
+    })
 
     const [loading, setLoading] = useState(true)
 
@@ -54,53 +62,43 @@ export function Profile() {
             <Fragment>
                 <Navbar />
 
-                <div className="mt-5 d-flex align-items-center justify-content-around">
+                <div className="mt-5 p-5 d-flex align-items-center justify-content-center">
 
-                    <ProfilePanel />
+                    <div className="list-group p-5">
+                        
+                        <button id="personal" className="list-group-item list-group-item-action" style={{backgroundColor: "forestGreen"}} onClick={() => {
+                            setFormSelected({personalInfo: true, accountInfo: false, notifications: false})
+                            document.getElementById("personal").style="background-color: forestGreen"
+                            document.getElementById("account").style="background-color: white"
+                            document.getElementById("notifications").style="background-color: white"
+                        }} >
+                            Personal Info
+                        </button>
 
-                    <div className="d-flex flex-column align-items-center justify-content-center mt-5">
-                        <form className="mt-5">
-
-                            <div className="mb-3">
-                                <label htmlFor="exampleInputName1" className="form-label">First Name</label>
-                                <input type="text" defaultValue={user.first_name} className="form-control" id="exampleInputName1" aria-describedby="nameHelp"/>
-                                <div id="nameHelp" className="form-text"></div>
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="exampleInputName2" className="form-label">Last Name</label>
-                                <input type="text" defaultValue={user.last_name} className="form-control" id="exampleInputName2" aria-describedby="nameHelp"/>
-                                <div id="nameHelp" className="form-text"></div>
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                <input type="email" defaultValue={user.email} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                                <div id="emailHelp" className="form-text"></div>
-                            </div>
-                            
-                            <div className="mb-3">
-                                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                <input type="password" className="form-control" id="exampleInputPassword1"/>
-                            </div>
-                            
-                            
-                            <button type="submit" className="btn btn-primary">Save</button>
-                        </form>
-
-                        <div className="mt-5">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                            <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                ON
-                            </label>
-
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
-                            <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                OFF
-                            </label>
-                        </div>
+                        <button id="account" className="list-group-item list-group-item-action" onClick={() => {
+                            setFormSelected({personalInfo: false, accountInfo: true, notifications: false})
+                            document.getElementById("personal").style="background-color: white"
+                            document.getElementById("account").style="background-color: forestGreen"
+                            document.getElementById("notifications").style="background-color: white"
+                        }} >
+                            Account Details
+                        </button>
+                        
+                        <button id="notifications" className="list-group-item list-group-item-action" onClick={() => {
+                            setFormSelected({personalInfo: false, accountInfo: false, notifications: true})
+                            document.getElementById("personal").style="background-color: white"
+                            document.getElementById("account").style="background-color: white"
+                            document.getElementById("notifications").style="background-color: forestGreen"
+                        }} >
+                            Notifications
+                        </button>
 
                     </div>
+
+                    { (formSelected.personalInfo) ? <PersonalInfoForm user={user} /> : null }
+                    { (formSelected.accountInfo) ? <AccountDetailsForm user={user} /> : null }
+                    { (formSelected.notifications) ? <NotificationsForm user={user} /> : null }
+
                 </div>
             </Fragment>
             )}
