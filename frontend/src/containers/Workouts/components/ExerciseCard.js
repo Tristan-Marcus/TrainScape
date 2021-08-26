@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export const ExerciseTemplate = (props) => {
+export const ExerciseCard = (props) => {
     const [exerciseDetails, setExerciseDetails] = useState({})
 
     const fetchExerciseDetails = () => {

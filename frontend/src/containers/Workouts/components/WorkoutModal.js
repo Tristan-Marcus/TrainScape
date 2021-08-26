@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ExerciseTemplate } from './ExerciseTemplate'
+import { ExerciseCard } from './ExerciseCard'
 
 export const WorkoutModal = (props) => {
 
@@ -18,7 +18,7 @@ export const WorkoutModal = (props) => {
                         <div className="list-group">
                         
                             {props.workoutDetails.exercises.map( element => (
-                                <ExerciseTemplate workoutID={props.workoutDetails.workout_id} exercise={element} />
+                                <ExerciseCard workoutID={props.workoutDetails.workout_id} exercise={element} />
                             ))}
                             
                         </div>

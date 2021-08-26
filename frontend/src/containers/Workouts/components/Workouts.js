@@ -10,7 +10,8 @@ import { setUser } from '../../Profile/actions';
 import { setWorkouts } from '../actions';
 
 import { Navbar } from '../../../components/Navbar';
-import { WorkoutsView } from './WorkoutsView'
+import { WorkoutCard } from './WorkoutCard'
+import { NewWorkoutModal } from './NewWorkoutModal'
 
 
 const stateSelector = createSelector(makeSelectWorkouts, (workouts) => ({
@@ -71,12 +72,15 @@ export const Workouts = () => {
 
             setWorkouts(response.data)
         }
-
+        
     }
 
     useEffect(() => {
-        fetchUserData()
         fetchWorkouts()
+    }, [user])
+
+    useEffect(() => {
+        fetchUserData()
     }, [])
 
     return (
@@ -88,8 +92,18 @@ export const Workouts = () => {
                 <button className="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#testModal" aria-current="true">
                     New Workout
                 </button>
-                
-                <WorkoutsView workouts={workouts}/>
+
+                <div className="container mt-3" style={{backgroundColor: "white", height: "80vh"}}>
+            
+                    <NewWorkoutModal />
+
+                    <div className="list-group">
+                        {workouts.map( element => (
+                            <WorkoutCard workout={element}/>
+                        ))}
+                    </div>
+                </div>
+
             </Fragment>
             )}
         </div>

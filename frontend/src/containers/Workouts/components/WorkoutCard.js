@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { WorkoutModal } from './WorkoutModal'
 
-export const WorkoutTemplate = (props) => {
+export const WorkoutCard = (props) => {
 
     const deleteWorkout = () => {
         try {
