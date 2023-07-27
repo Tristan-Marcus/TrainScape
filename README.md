@@ -1,8 +1,6 @@
 # TrainScape - Fitness Tracker
 
-An open source web application currently in development.
-
-This is a fitness tracking solution designed for myself during the covid-19 pandemic.
+An open source web application designed to track fitness progress for myself.
 
 
 <br />
