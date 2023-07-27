@@ -1,4 +1,4 @@
-# TrainScape - Fitiness Tracker
+# TrainScape - Fitness Tracker
 
 An open source web application currently in development.
 
