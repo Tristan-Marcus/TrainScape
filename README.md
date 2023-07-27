@@ -58,20 +58,6 @@ If you want to contact me use the form on my [website]
 <br />
 
 
-# 📺 My Youtube channel
-
-<!-- YOUTUBE:START -->
-- [Minecraft Build Tutorial - Mountainside Frame House - Ray Tracing Shaders](https://youtu.be/eKxvAHwXq_Q)
-- [Minecraft Build Tutorial - Tiny Modern House - Ray Tracing](https://youtu.be/GJFp7FoVuqk)
-- [Half-Life: Alyx - Chapter 1 "Entanglement"](https://youtu.be/MtMtkdshraU)
-- [Half-Life: Alyx - Chapter 2 "The Quarantine Zone"](https://youtu.be/sL7JrhOv7q8)
-<!-- YOUTUBE:END -->
-
-➡️ [more videos...](https://www.youtube.com/channel/UCzmnYFdFDFCwFJsf6_tmYUQ)
-
-
 [website]: https://tristan-marcus.github.io/portfolio/
-[linkedin]: https://www.linkedin.com/in/tristan-marcus
 [github]: https://github.com/Tristan-Marcus
-[youtube]: https://www.youtube.com/channel/UCzmnYFdFDFCwFJsf6_tmYUQ
 
